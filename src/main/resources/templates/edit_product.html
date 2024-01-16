@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Produk</title>
+	
+    <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background-color: #212529;
+      color: #fff;
+    }
+
+    .navbar {
+      background-color: #343a40 !important;
+    }
+
+    .card {
+      background-color: #343a40;
+      border: 1px solid #495057;
+      color: #fff;
+    }
+
+    .card-header {
+      background-color: #495057;
+      border-bottom: 1px solid #343a40;
+      color: #fff;
+    }
+
+    .form-label,
+    .form-control {
+      color: #fff;
+    }
+
+    select.form-control {
+      background-color: #495057;
+      color: #fff;
+    }
+
+    button.btn-primary,
+    a.btn-danger {
+      background-color: #007bff;
+      border: 1px solid #007bff;
+      color: #fff;
+    }
+
+    .footer_section {
+      background-color: #343a40;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      position: relative;
+      width: 100%;
+      margin-top: 50px; /* Add margin to separate from the content */
+    }
+  </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info mb-5">
+	    <div class="container-fluid">
+	        <a class="navbar-brand" href="#">
+	            BAAK DEL
+	        </a>
+	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+	                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class="navbar-toggler-icon"></span>
+	        </button>
+	        <div class="collapse navbar-collapse" id="navbarNav">
+	            <div class="d-flex justify-content-between w-100">
+	                <div>
+	                    <ul class="navbar-nav">
+	                        <li class="nav-item">
+	                            <a class="nav-link" th:href="@{/index2}">Kaos</a>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a class="nav-link" th:href="@{/index3}">Ruangan</a>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a class="nav-link" th:href="@{/index4}">Request Surat</a>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a class="nav-link" th:href="@{/index5}">Request Ijin Keluar</a>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a class="nav-link" th:href="@{/index6}">Request Ijin Bermalam</a>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a class="nav-link" th:href="@{/index8}">Booking Ruangan</a>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a class="nav-link" th:href="@{/index7}">Order</a>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a class="nav-link" th:href="@{/history}">History</a>
+	                        </li>
+	                    </ul>
+	                </div>
+	                <div class="ms-auto">
+	                    <form th:action="@{/logout}" method="post">
+	                        <input type="submit" value="Logout" class="btn btn-danger d-sm-inline-block d-none">
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</nav>  <div th:if="${session.userId}">
+	    <!-- Menampilkan ID Pengguna dari sesi -->
+	
+	    <div class="col-md-8 offset-md-2">
+        <div class="content-body">
+            <!-- row -->
+			<div class="container-fluid">
+						<div class="col-md-8 offset-md-1">
+							<div class="card">
+								<div>
+									<h5 class="text-center text-success"></h5>
+								</div>
+								<div class="card-header">
+									<h2>Edit Produk</h2>
+								</div>
+			
+								<div class="card-body">
+			
+									<form th:object="${product}">
+										<input type="hidden" class="form-control" th:field="*{id}" id="id">
+										<div class="mb-3">
+											<label for="exampleInputEmail1" class="form-label">Masukkan Nama Produk </label> 
+											<input type="text" class="form-control" th:field="*{namaProduk}" id="namaProduk">
+										</div>
+
+			
+										<div class="mb-3">
+											<label for="exampleInputEmail1" class="form-label">Masukan Harga </label> 
+											<input type="text" class="form-control" th:field="*{harga}" id="harga"> 
+										</div>
+			
+										
+																	<div class="mb-3">
+											<label for="exampleInputEmail1" class="form-label">Ukuran </label> 
+											<select class="form-control" id="ukuran">
+											    <option value="S">Small</option>
+											    <option value="M">Mini</option>
+											   <option value="L">Large</option>
+											    <option value="XL">Extra Large</option>
+											    <option value="XXL">XXL</option>
+											</select>
+										</div>
+			
+										<button type="submit" class="btn btn-primary">Update</button>
+										<a th:href="@{/index2}" class="btn btn-danger">Kembali</a>
+									</form>
+								</div>
+							</div>
+				</div>
+            </div>
+        </div>
+    
+    <script src="vendor/global/global.min.js"></script>
+	<script src="vendor/chart.js/Chart.bundle.min.js"></script>
+	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+	
+	<script src="vendor/apexchart/apexchart.js"></script>
+	<script src="vendor/nouislider/nouislider.min.js"></script>
+	<script src="vendor/wnumb/wNumb.js"></script>
+	
+	<script src="js/dashboard/dashboard-1.js"></script>
+
+    <script src="js/custom.min.js"></script>
+	<script src="js/dlabnav-init.js"></script>
+	<script src="js/demo.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+	 <script>
+	$(document).ready(function() {
+		$("button").click(function() {
+			var date = new Date();
+			var userModel = {
+				"id" : $("#id").val(),
+				"namaProduk" : $("#namaProduk").val(),
+				"harga" : $("#harga").val(),
+				"ukuran" : $("#ukuran").val()
+			};
+			var requestJSON = JSON.stringify(userModel);
+			$.ajax({
+				type : "PUT",
+				url : "http://localhost:8080/produk/" + $("#id").val(),
+				headers : {
+				"Content-Type" : "application/json"
+				},
+				data : requestJSON,
+				success : function(data) {
+					alert("Data berhasil diedit");
+					window.location.href = "http://localhost:8080/index2";
+				}
+			});
+		});
+	});
+	</script>
+</body>
+
+</html>

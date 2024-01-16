@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .wrapper {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .name {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-field {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #444;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .error-popup {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="text-center mt-4 name">
+            Login
+        </div>
+        <form class="p-3 mt-3" th:action="@{/login}" th:object="${user}" method="post">
+            <div th:if="${#fields.hasErrors('username') or #fields.hasErrors('password')}" class="error-popup">
+                <p th:if="${#fields.hasErrors('username')}" th:text="${#fields.errors('username')}"></p>
+                <p th:if="${#fields.hasErrors('password')}" th:text="${#fields.errors('password')}"></p>
+            </div>
+
+            <div class="form-field">
+                <input type="text" th:field="*{username}" class="form-control" placeholder="Username" required>
+            </div>
+            <div class="form-field">
+                <input type="password" th:field="*{password}" class="form-control" placeholder="Password" required>
+            </div>
+            <button class="btn mt-3">Login</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="#" style="margin-right: 10px;">Don't have an account?</a> <a th:href="@{register}">Register</a>
+        </div>
+    </div>
+</body>
+
+</html>
